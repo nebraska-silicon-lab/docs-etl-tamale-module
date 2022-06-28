@@ -10,6 +10,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[english]{isodate}
+\usepackage[tocentry, tablegrid]{vhistory}
 
 % tikz is used to draw images in this example, but you can
 % also use \includegraphics{}.
@@ -28,62 +29,7 @@
 \begin{document}
 \maketitle
 
-\section{Features}
 
-\begin{itemize}
-\item{TBD}
-\item{TBD}
-\item{TBD}
-\end{itemize}
-
-\section{General Description}
-TBD TBD
-
-% Switch to next column
-\vfill\break
-
-\begin{figure}[h]
-    \begin{circuitikz}[european]
-        \node[op amp] (amp1) {};
-        \node[op amp, below = 0.5cm, xscale = -1] (amp2) {};
-        \draw (amp1.out) |- (amp2.-);
-        \draw (amp2.-) ++(0, 0.3cm) node[circ]{} to +(2,0) node[above left]{5};
-        \draw (amp2.out) to (amp1.+);
-        \draw (amp1.+) ++(0, -0.3cm) node[circ]{} to +(-2,0) node[above right]{2};
-        \draw (amp1.-) to +(-2,0) node[above right]{1};
-        \draw (amp2.+) to +(2,0) node[above left]{4};
-        \draw (amp1.out) +(0,0.5cm) node (Vdd) {$\mathrm{V_{DD}}$};
-        \draw (Vdd.east) to +(1.5,0) node [above left]{6};
-        \draw (amp2.out) +(0,-0.5cm) node (Vss) {$\mathrm{V_{SS}}$};
-        \draw (Vss.west) to +(-1.6,0) node [above right]{3};
-        \draw ($(amp1.north west) + (-0.5,0.5)$) rectangle ($(amp2.south west) + (0.5,-0.5)$);
-    \end{circuitikz}
-    \caption{Pinout and internal circuit}
-\end{figure}
-
-\begin{figure}[h]
-    \begin{tikzpicture}
-        \sffamily
-        \begin{axis}[
-            width=7cm,
-            xlabel={Number of LaTeX packages},
-            ytick distance=20,
-            yticklabel={\pgfmathprintnumber{\tick}\%},
-            xmajorgrids, ymajorgrids]
-        \addplot[smooth,mark=*] plot coordinates {
-            (0,4)
-            (5,50)
-            (10,80)
-            (15,95)
-            (20,98)
-        };
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Typical data sheet production efficiency}
-\end{figure}
-
-% For wide tables, a single column layout is better. It can be switched
-% page-by-page.
 \onecolumn
 
 \section{Overview of Design}
@@ -102,6 +48,7 @@ The overall module dimensions are 56.5mm long by 43.1mm wide with an estimated s
 
 
 \begin{figure}[h]
+	\centering
 	\includegraphics[width=\textwidth]{figures/overview.png}
 	\caption{Stackup of ETL Module design}
 	\label{fig:overview}
@@ -119,39 +66,64 @@ The Module PCB's dimensions match that of the module overall at 56.5x43.1mm. It 
 The opposite side of the board has a pattern of wire-bonding pads to connect with the ETROCs. The current proposal for this pattern is illustrated in Fig. \ref{fig:wirebonding-pattern}.
 
 \begin{figure}[h]
+	\centering
     \includegraphics[width=\textwidth]{figures/wirebonding-pattern.png}
     \caption{Proposed wirebonding pattern for the ETROC}
     \label{fig:wirebonding-pattern}	
 \end{figure}
 
-\section{Sensor-mount film}
+\section{Sensor-mount and Baseplate films}
 
 As mentioned in the introduction, a set of adhesive films are used to mechanically attach the module layers together as well as provide a thermal path for removing heat from the ETROC and LGAD. The leading candidate material is Laird TPCM (Thermal Phase Change Material) 580(CHECK THIS). The film will be cut to shape by an outside vendor and will arrive to the module factories with plastic liners on each side with tabs to allow easy removal.
 
 The sensor-mount film matches the envelope of the four ETROCs on the module. The dimensions are 42.6x46.6mm and 80um thick. The film will be applied to the Module PCB using a mechanical jig for alignment and to minimize the presence of trapped air between the film and the PCB.
 
+A second film is applied to the baseplate and is used to fix the baseplate to the rest of the assembly. This film, the "Baseplate Film", is 43x43.4mm and has a 3mm diameter semicircular cutout centered along the shorter edge to provide access to the sensor for the bias wirebonds. This film will be applied to the baseplate using a similar jig to that used for applying the sensor-mount film. 
+
+Immediately after placement, the subassemblies will be placed in a 60\degree C vacuum oven for a minimum of 20 minutes to cure the films. Curing the films causes them to conform to and better adhere to the surfaces they are in contact with. The first cure, or pre-assembly cure, is important to ensure that the films are well-adhered to the module PCBs and baseplates. Lacking this, there is a risk of the film shifting at any point up to the post-assembly cure.
 
 \section{ETROC \& LGAD Subassembly}
+
+The active components of the module, the ETL Read-out Chip, or ETROC, and the Low-gain Avalanche Diode (Detector?) sensor, will arrive at the module factories already bump-bonded together. The ETROC is 21x23mm and is 0.25mm thick. The LGAD consists of a 16x16 grid of pixels has overall dimensions of 21.4x21.6mm and is 0.3mm thick. The ETROC and LGAD are aligned such that the LGAD overhangs the edge of the ETROC on three sides by 0.2mm, and on the 4th side the ETROC extends past the sensor by 1.6mm with the wirebond pads along the edge. This is illustrated in Fig. \ref{fig:bbm-geometry}.
+
+\begin{figure}[h]
+	\centering
+    \includegraphics[width=0.5\textwidth]{figures/ETROCpLGAD.png}
+    \caption{Geometry of ETROC+LGAD subassembly}
+    \label{fig:bbm-geometry}	
+\end{figure}
+
+Each module has four ETROG+LGAD subassemblies. They are placed in a 2x2 array with a spacing of 0.2mm between adjacent sensors. The array is centered on the module PCB with each subassembly's wirebond pads facing out (Fig. \ref{fig:mod-with-bbms}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth,angle=90]{figures/module-with-bbms.png}
+	\caption{Positioning of ETROC+LGAD subassemblies on the module PCB}
+	\label{fig:mod-with-bbms}	
+\end{figure}
+
+The ETROC+LGAD subassemblies are placed onto a module PCB using a high-precision robotic gantry. Prior to pick-and-place the top plastic liner on the sensor-mount film on the module PCB is removed. The gantry is equipped with a vision system that measures the positions of the subassemblies with respect to the module PCB after placement. These measurements are used to check that the assembly precision meets requirements.
+
+After placing the ETROC+LGAD subassemblies, the module is again placed in a vacuum oven for the post-assembly cure. This is needed to ensure that the subassemblies do not shift during wirebonding or encapsulation.
 
 
 \section{Wirebonding}
 
+Each ETROC requires 142 wirebonds to connect it to the module PCB. The pattern for these wirebonds is shown in \ref{fig:wirebonding-pattern}. In addition, bias voltage is supplied to the sensor via wirebonds that attach to its top surface. The ETROC and LGAD wirebonds both will be completed during the same stage of assembly. The bonding wire will be 25 um diameter aluminum-silicon alloy. The bond pads should have ENEPIG surface finish to achieve optimal wirebonding performance.
 
 \section{Wirebond Encapsulation}
 
 
-\section{Ahesive Films}
-
-
-
 \section{Baseplate}
 
-The baseplate 
+The baseplate.
 
 
 
 
-
+\begin{versionhistory}
+	\vhEntry{1}{June, 2022}{C. Fangmeier}{Initial description based on Tamale module design presented at TIP in March 2022}
+\end{versionhistory}
 
 
 \end{document}
