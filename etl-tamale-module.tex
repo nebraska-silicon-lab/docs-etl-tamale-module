@@ -32,6 +32,15 @@
 
 \onecolumn
 
+\begin{versionhistory}
+	\vhEntry{1}{June, 2022}{C. Fangmeier}{Initial description based on Tamale module design presented at TIP in March 2022}
+\end{versionhistory}
+
+\begin{Large}
+	\textbf{
+    Disclaimer: This document comprises a snapshot in time of the evolution of the ETL module design. We anticipate no major changes from what is described here, but small adjustments here and there are expected.}
+\end{Large}
+
 \section{Overview of Design}
 
 The ETL Module is built from a stack-up of a components as illustrated in Fig. \ref{fig:overview}. Starting from the bottom, the layers are:
@@ -61,16 +70,18 @@ This document is structured to follow the gantry-based assembly procedure while 
 
 Assembly begins with the Module PCB as the base layer of the stackup. It is important to note that the modules are built "upside down", i.e. PCB-side down, while they will be mounted baseplate-side down.
 
-The Module PCB's dimensions match that of the module overall at 56.5x43.1mm. It has four 2.2mm diameter mounting holes, one in each corner. These are through holes for M2 screws that will serve to hold the assembly of the readout board and its several modules to the disc. They are centered 1.75mm from each edge. The PCB will be a 4-layer board with 0.5mm nominal thickness. The board-to-board connectors are JAE Electronics WP7B-S050VA1-R8000. These are surface-mount connectors with 50 connections each and an overall stacking height of 0.7mm. They are placed with a separation of 23.53mm centered on the top of the board. The top of the board will also potentially have a small number of surface-mount passive components as required by the ETROC.
-
-The opposite side of the board has a pattern of wire-bonding pads to connect with the ETROCs. The current proposal for this pattern is illustrated in Fig. \ref{fig:wirebonding-pattern}.
+The Module PCB's dimensions match that of the module overall at 56.5x43.1mm. It has four 2.2mm diameter mounting holes, one in each corner. These are through holes for M2 screws that will serve to hold the assembly of the readout board and its several modules to the disc. The module PCB geometry is shown in Fig. \ref{fig:module-pcb} The PCB will be a 4-layer board with 0.5mm nominal thickness. The board-to-board connectors are JAE Electronics WP7B-S050VA1-R8000. These are surface-mount connectors with 50 connections each and an overall stacking height of 0.7mm. They are placed with a separation of 23.53mm centered on the top of the board. The top of the board will also potentially have a small number of surface-mount passive components as required by the ETROC.
 
 \begin{figure}[h]
 	\centering
-    \includegraphics[width=\textwidth]{figures/wirebonding-pattern.png}
-    \caption{Proposed wirebonding pattern for the ETROC}
-    \label{fig:wirebonding-pattern}	
+	\includegraphics[width=0.5\textwidth,angle=-90]{figures/module_pcb.png}
+	\caption{Geometry of Module PCB}
+	\label{fig:module-pcb}	
 \end{figure}
+
+The opposite side of the board has a pattern of wire-bonding pads to connect with the ETROCs. This is described in more detail in a later section.
+
+
 
 \section{Sensor-mount and Baseplate films}
 
@@ -111,19 +122,42 @@ After placing the ETROC+LGAD subassemblies, the module is again placed in a vacu
 
 Each ETROC requires 142 wirebonds to connect it to the module PCB. The pattern for these wirebonds is shown in \ref{fig:wirebonding-pattern}. In addition, bias voltage is supplied to the sensor via wirebonds that attach to its top surface. The ETROC and LGAD wirebonds both will be completed during the same stage of assembly. The bonding wire will be 25 um diameter aluminum-silicon alloy. The bond pads should have ENEPIG surface finish to achieve optimal wirebonding performance.
 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{figures/wirebonding-pattern.png}
+	\caption{Proposed wirebonding pattern for the ETROC}
+	\label{fig:wirebonding-pattern}	
+\end{figure}
+
 \section{Wirebond Encapsulation}
 
+It is important to encapsulate wirebonds with a suitable material to reduce the risk of physical damage, increase electrical isolation between the bonds, and damp any potential oscillations caused the Lorentz force on the wires in the magnetic field of CMS.
+
+A suitable material that has been used extensively in CMS is Sylgard 186. It is a 2-part silicone elastomer that is dispensed over the wirebonds using a dedicated dispensing robot. At minimum, the encapsulant must cover the wirebond pads and feet, and full wire coverage is also being considered.
 
 \section{Baseplate}
 
-The baseplate.
+The final step in assembly is attaching the module baseplate. The baseplate is made of Alumina. It has overall dimensions matching the module PCB, but with a thickness of 1mm. The baseplate has a 2.5mm diameter hole in each corner. 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth,angle=-90]{figures/baseplate.png}
+	\caption{Geometry of module baseplate}
+	\label{fig:baseplate}	
+\end{figure}
 
+The baseplate also has a 3mm wide cutout centered along each of the the short ends that provides access for the bias wirebonds to the top surface of the sensor. This is shown in Fig. \ref{fig:baseplate-detail}.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\textwidth]{figures/baseplate-detail.png}
+	\caption{Detail of the baseplate cutout providing access to the sensor}
+	\label{fig:baseplate-detail}	
+\end{figure}
 
-\begin{versionhistory}
-	\vhEntry{1}{June, 2022}{C. Fangmeier}{Initial description based on Tamale module design presented at TIP in March 2022}
-\end{versionhistory}
+At this point in assembly a film has already been placed onto the baseplate and been pre-cured. What remains is to use the robotic gantry to place the baseplate on top of the module, and then perform the final film cure. At this point the module assembly is finished. After this, extensive testing and calibration will be performed on each module. A description of these tests is outside the scope of this document, but can be found in XXX.
+
 
 
 \end{document}
