@@ -46,14 +46,14 @@
 The ETL Module is built from a stack-up of a components as illustrated in Fig. \ref{fig:overview}. Starting from the bottom, the layers are:
 
 \begin{itemize}
-	\item A ceramic baseplate. Currently Alumina is the preferred material for its high thermal conductivity and relatively low cost compared to alternatives.
-	\item An adhesive film. The leading candidate is an 80um thick silicone-based phase-change material. It serves as both a strong mechanical and low-resistance thermal interface between the silicon components and the baseplate.
+	\item A ceramic baseplate. Currently, Alumina or Aluminum Nitride are the leading candidate materials for their relatively high thermal conductivity and low cost.  
+	\item An adhesive layer. The leading candidate is an 80um thick silicone-based phase-change thin-film material. It serves as both a strong mechanical and relatively low-resistance thermal interface between the silicon components and the baseplate.  
 	\item Four ETROC+LGAD subassemblies. These will be bump-bonded by an external vendor.
-	\item A 2nd adhesive film. It will be the same material as the sensor-mount film, but cut to slightly different from the previous film.
+	\item A 2nd adhesive layer. It will be the same material as the sensor-mount adhesive.
 	\item A PCB. This serves as the power and I/O interface between the readout board and the module via two board-to-board connectors. It also serves as a location to place any SMT passive components that must be placed very near the ETROCs.
 \end{itemize}
 
-The overall module dimensions are 56.5mm long by 43.1mm wide with an estimated stackup height of 2.97mm. For prototype modules to be constructed using ETROC2, the length is increased by 1mm to 57.5mm to ease the wirebonding process.
+The overall module dimensions are 56.5mm long by 43.1mm wide with an estimated stackup height of 2.97mm. For prototype modules to be constructed using ETROC2, the length is increased by 1mm to 57.5mm to ease the wire bonding process.
 
 
 \begin{figure}[h]
@@ -70,7 +70,9 @@ This document is structured to follow the gantry-based assembly procedure while 
 
 Assembly begins with the Module PCB as the base layer of the stackup. It is important to note that the modules are built "upside down", i.e. PCB-side down, while they will be mounted baseplate-side down.
 
-The Module PCB's dimensions match that of the module overall at 56.5x43.1mm. It has four 2.2mm diameter mounting holes, one in each corner. These are through holes for M2 screws that will serve to hold the assembly of the readout board and its several modules to the disc. The module PCB geometry is shown in Fig. \ref{fig:module-pcb} The PCB will be a 4-layer board with 0.5mm nominal thickness. The board-to-board connectors are JAE Electronics WP7B-S050VA1-R8000. These are surface-mount connectors with 50 connections each and an overall stacking height of 0.7mm. They are placed with a separation of 23.53mm centered on the top of the board. The top of the board will also potentially have a small number of surface-mount passive components as required by the ETROC.
+The Module PCB's dimensions match that of the module overall at 56.5x43.1mm.  The 56.5mm length is a limiting constraint on the length of the wire bonds connecting each ETROC with the module PCB.  Thus, for modules assembled with the prototype ETROC2 will increase the overall length by 1mm to 57.5mm.  The module dimensions will be finalized following studies with the ETROC2 prototype and considerations in the power board design.
+
+The module PCB design currently has four 2.2mm diameter mounting holes, one in each corner. These are through holes for M2 screws that will serve to hold the assembly of the readout board and its several modules to the disc. The module PCB geometry is shown in Fig. \ref{fig:module-pcb} The PCB will be a 4-layer board with 0.5mm nominal thickness. The board-to-board connectors are JAE Electronics WP7B-S050VA1-R8000. These are surface-mount connectors with 50 connections each and an overall stacking height of 0.7mm. They are placed with a separation of 23.53mm centered on the top of the board. The top of the board will also potentially have a small number of surface-mount passive components as required by the ETROC.
 
 \begin{figure}[h]
 	\centering
@@ -82,16 +84,17 @@ The Module PCB's dimensions match that of the module overall at 56.5x43.1mm. It 
 The opposite side of the board has a pattern of wire-bonding pads to connect with the ETROCs. This is described in more detail in a later section.
 
 
-
 \section{Sensor-mount and Baseplate films}
 
-As mentioned in the introduction, a set of adhesive films are used to mechanically attach the module layers together as well as provide a thermal path for removing heat from the ETROC and LGAD. The leading candidate material is Laird TPCM (Thermal Phase Change Material) 580(CHECK THIS). The film will be cut to shape by an outside vendor and will arrive to the module factories with plastic liners on each side with tabs to allow easy removal.
+As mentioned in the introduction, adhesive layers are used to mechanically attach the module layers together as well as provide a thermal path for removing heat from the ETROC and LGAD. The leading candidate material is the Laird TPCM (Thermal Phase Change Material) 580 thin-film adhesive. The film will be cut to shape by an outside vendor and will arrive to the module factories with plastic liners on each side with tabs to allow easy removal.
 
-The sensor-mount film matches the envelope of the four ETROCs on the module. The dimensions are 42.6x46.6mm and 80um thick. The film will be applied to the Module PCB using a mechanical jig for alignment and to minimize the presence of trapped air between the film and the PCB.
+The sensor-mount film matches the envelope of the four ETROCs on the module (should it be slightly larger?). The dimensions are 42.6x46.6mm and 80um thick. The film will be applied to the Module PCB using a mechanical jig for alignment and to minimize the presence of trapped air between the film and the PCB.
 
-A second film is applied to the baseplate and is used to fix the baseplate to the rest of the assembly. This film, the "Baseplate Film", is 43x43.4mm and has a 3mm diameter semicircular cutout centered along the shorter edge to provide access to the sensor for the bias wirebonds. This film will be applied to the baseplate using a similar jig to that used for applying the sensor-mount film. 
+A second film is applied to the baseplate and is used to fix the baseplate to the rest of the assembly. This film, the "Baseplate Film", is 43x43.4mm and has two 3mm diameter semicircular cutouts centered on each ETROC-LGAD subassembly along the shorter edge to provide access to the sensor for bias wire bonds. This film will be applied to the baseplate using a similar jig to that used for applying the sensor-mount film. 
 
-Immediately after placement, the subassemblies will be placed in a 60\degree C vacuum oven for a minimum of 20 minutes to cure the films. Curing the films causes them to conform to and better adhere to the surfaces they are in contact with. The first cure, or pre-assembly cure, is important to ensure that the films are well-adhered to the module PCBs and baseplates. Lacking this, there is a risk of the film shifting at any point up to the post-assembly cure.
+Immediately after placement, the subassemblies will be placed in a  vacuum oven for a minimum of 20 minutes at 60\degree C to cure the films. Curing the films causes them to conform to and better adhere to the surfaces they are in contact with. The first cure, or pre-assembly cure, is important to ensure that the films are well-adhered to the module PCBs and baseplates. Lacking this, there is a risk of the film shifting at any point up to the post-assembly cure.
+
+Prior experience in the field with silicone-based adhesives shows good performance after irradiation (see 2001 CERN yellow report on adhesives), but samples should be prepared and evaluated after irradiation to HL-LHC fluences (neutrons? gammas?).  Other adhesive options include Araldite two-component epoxy, which has already been evaluated to fluences greater than those expected in MTD throughout HL-LHC lifetime. 
 
 \section{ETROC \& LGAD Subassembly}
 
@@ -104,7 +107,7 @@ The active components of the module, the ETL Read-out Chip, or ETROC, and the Lo
     \label{fig:bbm-geometry}	
 \end{figure}
 
-Each module has four ETROG+LGAD subassemblies. They are placed in a 2x2 array with a spacing of 0.2mm between adjacent sensors. The array is centered on the module PCB with each subassembly's wirebond pads facing out (Fig. \ref{fig:mod-with-bbms}).
+Each module has four ETROG+LGAD subassemblies. They are placed in a 2x2 array with a spacing of 0.2mm between adjacent sensors (is this sufficient to prevent potential sparking?). The array is centered on the module PCB with each subassembly's wire bond pads facing out (Fig. \ref{fig:mod-with-bbms}).
 
 \begin{figure}[h]
 	\centering
@@ -120,7 +123,7 @@ After placing the ETROC+LGAD subassemblies, the module is again placed in a vacu
 
 \section{Wirebonding}
 
-Each ETROC requires 142 wirebonds to connect it to the module PCB. The pattern for these wirebonds is shown in \ref{fig:wirebonding-pattern}. In addition, bias voltage is supplied to the sensor via wirebonds that attach to its top surface. The ETROC and LGAD wirebonds both will be completed during the same stage of assembly. The bonding wire will be 25 um diameter aluminum-silicon alloy. The bond pads should have ENEPIG surface finish to achieve optimal wirebonding performance.
+Each ETROC requires 142 wire bonds to connect it to the module PCB. The pattern for these wire bonds is shown in Fig.~\ref{fig:wirebonding-pattern}. In addition, bias voltage is supplied to the sensor via wire bonds that attach to the metallized backplane of the sensor. The ETROC and LGAD wire bonds both will be completed during the same stage of assembly. The bonding wire will be 25 um diameter aluminum-silicon alloy. The bond pads should have ENEPIG surface finish to achieve optimal wire bonding performance.  In addition, to facilitate wire bonding, fiducial markers (TBD) should be included to simplify navigation of the bond pads on both sides.
 
 
 \begin{figure}[h]
@@ -132,13 +135,13 @@ Each ETROC requires 142 wirebonds to connect it to the module PCB. The pattern f
 
 \section{Wirebond Encapsulation}
 
-It is important to encapsulate wirebonds with a suitable material to reduce the risk of physical damage, increase electrical isolation between the bonds, and damp any potential oscillations caused the Lorentz force on the wires in the magnetic field of CMS.
+It is important to encapsulate wire bonds with a suitable material to reduce the risk of physical damage, increase electrical isolation between the bonds, and damp any potential oscillations caused the Lorentz force on the wires in the magnetic field of CMS.
 
-A suitable material that has been used extensively in CMS is Sylgard 186. It is a 2-part silicone elastomer that is dispensed over the wirebonds using a dedicated dispensing robot. At minimum, the encapsulant must cover the wirebond pads and feet, and full wire coverage is also being considered.
+A suitable material that has been used extensively in CMS is Sylgard 186. It is a 2-part silicone elastomer that is dispensed over the wire bonds using a dedicated dispensing robot. At minimum, the encapsulant must cover the wire bond pads and feet, and full wire coverage is also being considered.  Studies have shown that Sylgard lacks sufficient radiation tolerance to be used in HL-LHC tracking detectors.  It is expected to be ok for use in ETL, but needs to be confirmed with studies of irradiated samples.
 
 \section{Baseplate}
 
-The final step in assembly is attaching the module baseplate. The baseplate is made of Alumina. It has overall dimensions matching the module PCB, but with a thickness of 1mm. The baseplate has a 2.5mm diameter hole in each corner. 
+The final step in assembly is attaching the module baseplate. Alumina and Aluminum Nitride ceramics are leading candidates for the baseplate material. It has overall dimensions matching the module PCB, but with a thickness of 1mm. The baseplate has a 2.5mm diameter hole in each corner.  The baseplate provides mechanical rigidity and a thermal path between the ETROC-LGAD subassemblies and Al dees containing embedded cooling loops.  The mounting scheme is still under consideration.  It is worth noting that the number of mounting holes is a driving factor in the fabrication cost of the Al dees.
 
 \begin{figure}[h]
 	\centering
@@ -157,7 +160,6 @@ The baseplate also has a 3mm wide cutout centered along each of the the short en
 \end{figure}
 
 At this point in assembly a film has already been placed onto the baseplate and been pre-cured. What remains is to use the robotic gantry to place the baseplate on top of the module, and then perform the final film cure. At this point the module assembly is finished. After this, extensive testing and calibration will be performed on each module. A description of these tests is outside the scope of this document, but can be found in XXX.
-
 
 
 \end{document}
