@@ -10,31 +10,29 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[english]{isodate}
-\usepackage[tocentry, tablegrid]{vhistory}
+\usepackage{graphicx}
 
-% tikz is used to draw images in this example, but you can
-% also use \includegraphics{}.
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{circuitikz}
-\usetikzlibrary{calc}
 
 % These define global texts that are used in headers and titles.
 \title{ETL Tamale Module Design}
 \author{ETL Module design team}
 \date{June 2022}
-\revision{Revision 1}
+\revision{Revision WIP-1}
 \companylogo{\Huge CMS}
 
 \begin{document}
 \maketitle
 
+\tableofcontents
 
 \onecolumn
 
-\begin{versionhistory}
-	\vhEntry{1}{June, 2022}{C. Fangmeier}{Initial description based on Tamale module design presented at TIP in March 2022}
-\end{versionhistory}
+
+\begin {tabular}{l|l|l|p{4in}}\hline 
+\textbf {Revision} & \textbf {Date} & \textbf {Author(s)} & \textbf {Changes}\\ \hline 
+WIP-1 & July, 2022 & C. Fangmeier & Initial description based on Tamale module design presented at TIP in March 2022. Structure of document \& description of Gantry-based assembly.\\ \hline 
+\end {tabular}
+
 
 \begin{Large}
 	\textbf{
@@ -63,10 +61,10 @@ The overall module dimensions are 56.5mm long by 43.1mm wide with an estimated s
 	\label{fig:overview}
 \end{figure}
 
-This document is structured to follow the gantry-based assembly procedure while providing relevant details on the mechanical structure of the module and components along the way. A mechanical jig-based assembly is also being developed to be deployed as module factories that do not have gantries. The modules produced with either method will be identical.
+This section is structured to follow the gantry-based assembly procedure while providing relevant details on the mechanical structure of the module and components along the way. A mechanical jig-based assembly is also being developed to be deployed as module factories that do not have gantries. Details on that procedure can be found at the end of this section. The modules produced with either method will be identical.
 
 
-\section{Module PCB}
+\subsection{Module PCB}
 
 Assembly begins with the Module PCB as the base layer of the stackup. It is important to note that the modules are built "upside down", i.e. PCB-side down, while they will be mounted baseplate-side down.
 
@@ -84,7 +82,7 @@ The module PCB design currently has four 2.2mm diameter mounting holes, one in e
 The opposite side of the board has a pattern of wire-bonding pads to connect with the ETROCs. This is described in more detail in a later section.
 
 
-\section{Sensor-mount and Baseplate films}
+\subsection{Sensor-mount and Baseplate films}
 
 As mentioned in the introduction, adhesive layers are used to mechanically attach the module layers together as well as provide a thermal path for removing heat from the ETROC and LGAD. The leading candidate material is the Laird TPCM (Thermal Phase Change Material) 580 thin-film adhesive. The film will be cut to shape by an outside vendor and will arrive to the module factories with plastic liners on each side with tabs to allow easy removal.
 
@@ -96,7 +94,7 @@ Immediately after placement, the subassemblies will be placed in a  vacuum oven 
 
 Prior experience in the field with silicone-based adhesives shows good performance after irradiation (see 2001 CERN yellow report on adhesives), but samples should be prepared and evaluated after irradiation to HL-LHC fluences (neutrons? gammas?).  Other adhesive options include Araldite two-component epoxy, which has already been evaluated to fluences greater than those expected in MTD throughout HL-LHC lifetime. 
 
-\section{ETROC \& LGAD Subassembly}
+\subsection{ETROC \& LGAD Subassembly}
 
 The active components of the module, the ETL Read-out Chip, or ETROC, and the Low-gain Avalanche Diode (Detector?) sensor, will arrive at the module factories already bump-bonded together. The ETROC is 21x23mm and is 0.25mm thick. The LGAD consists of a 16x16 grid of pixels has overall dimensions of 21.4x21.6mm and is 0.3mm thick. The ETROC and LGAD are aligned such that the LGAD overhangs the edge of the ETROC on three sides by 0.2mm, and on the 4th side the ETROC extends past the sensor by 1.6mm with the wirebond pads along the edge. This is illustrated in Fig. \ref{fig:bbm-geometry}.
 
@@ -121,7 +119,7 @@ The ETROC+LGAD subassemblies are placed onto a module PCB using a high-precision
 After placing the ETROC+LGAD subassemblies, the module is again placed in a vacuum oven for the post-assembly cure. This is needed to ensure that the subassemblies do not shift during wirebonding or encapsulation.
 
 
-\section{Wirebonding}
+\subsection{Wirebonding}
 
 Each ETROC requires 142 wire bonds to connect it to the module PCB. The pattern for these wire bonds is shown in Fig.~\ref{fig:wirebonding-pattern}. In addition, bias voltage is supplied to the sensor via wire bonds that attach to the metallized backplane of the sensor. The ETROC and LGAD wire bonds both will be completed during the same stage of assembly. The bonding wire will be 25 um diameter aluminum-silicon alloy. The bond pads should have ENEPIG surface finish to achieve optimal wire bonding performance.  In addition, to facilitate wire bonding, fiducial markers (TBD) should be included to simplify navigation of the bond pads on both sides.
 
@@ -133,13 +131,13 @@ Each ETROC requires 142 wire bonds to connect it to the module PCB. The pattern 
 	\label{fig:wirebonding-pattern}	
 \end{figure}
 
-\section{Wirebond Encapsulation}
+\subsection{Wirebond Encapsulation}
 
 It is important to encapsulate wire bonds with a suitable material to reduce the risk of physical damage, increase electrical isolation between the bonds, and damp any potential oscillations caused the Lorentz force on the wires in the magnetic field of CMS.
 
 A suitable material that has been used extensively in CMS is Sylgard 186. It is a 2-part silicone elastomer that is dispensed over the wire bonds using a dedicated dispensing robot. At minimum, the encapsulant must cover the wire bond pads and feet, and full wire coverage is also being considered.  Studies have shown that Sylgard lacks sufficient radiation tolerance to be used in HL-LHC tracking detectors.  It is expected to be ok for use in ETL, but needs to be confirmed with studies of irradiated samples.
 
-\section{Baseplate}
+\subsection{Baseplate}
 
 The final step in assembly is attaching the module baseplate. Alumina and Aluminum Nitride ceramics are leading candidates for the baseplate material. It has overall dimensions matching the module PCB, but with a thickness of 1mm. The baseplate has a 2.5mm diameter hole in each corner.  The baseplate provides mechanical rigidity and a thermal path between the ETROC-LGAD subassemblies and Al dees containing embedded cooling loops.  The mounting scheme is still under consideration.  It is worth noting that the number of mounting holes is a driving factor in the fabrication cost of the Al dees.
 
@@ -160,6 +158,19 @@ The baseplate also has a 3mm wide cutout centered along each of the the short en
 \end{figure}
 
 At this point in assembly a film has already been placed onto the baseplate and been pre-cured. What remains is to use the robotic gantry to place the baseplate on top of the module, and then perform the final film cure. At this point the module assembly is finished. After this, extensive testing and calibration will be performed on each module. A description of these tests is outside the scope of this document, but can be found in XXX.
+
+\subsection{Jig-based Module Assembly}
+
+\section{Mechanical Durability}
+
+
+\section{Thermal Properties}
+
+
+\section{Irradiation Hardness}
+
+
+\section{Module QA/QC}
 
 
 \end{document}

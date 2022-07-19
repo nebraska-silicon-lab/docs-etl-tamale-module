@@ -122,4 +122,4 @@
 \newcommand{\thickhline}{\noalign {\ifnum 0=`}\fi \hrule height 1pt \futurelet \reserved@a \@xhline}
 
 % No numbering for section titles
-\setcounter{secnumdepth}{0}
+% \setcounter{secnumdepth}{0}
